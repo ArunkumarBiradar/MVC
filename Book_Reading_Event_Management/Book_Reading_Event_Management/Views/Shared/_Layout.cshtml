@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .navbar-inverse {
+            background-color: aquamarine;
+        }
+
+            .navbar-inverse .navbar-nav > li > a {
+                color: black;
+            }
+
+        
+        * {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            text-align: justify;
+        }
+   
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top bg-primary">
+        <div class="container" style="background-color: aquamarine">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Book Reading Event Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style = "color:black" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (Session["FullName"] != null)
+                    {
+                        <li>@Html.ActionLink("My Events", "Index", "Events")</li>
+                        <li>@Html.ActionLink("Comments", "Create", "Comments")</li>
+
+                        if ((string)Session["IsAdmin"] == "True")
+                        {
+                            <li>@Html.ActionLink("Invites", "Index", "Invites")</li>
+                            <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Invites", "InvitedEvents", "Invites")</li>
+                        }
+                    }
+                </ul>
+                <ul style="display:inline-flex;" class="nav navbar-nav navbar-right">
+                    @if (Session["FullName"] == null)
+                    {
+                        <li>@Html.ActionLink("Register", "Create", "Users")</li>
+                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                    }
+                    else
+                    {
+                        <li><a @*style="color:white"*@ href="/Users/presentUserDetails">Hello @Session["FullName"]</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Book Reading Event Management</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

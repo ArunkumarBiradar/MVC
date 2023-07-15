@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Book_Reading_Event_Management.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <style>
+        * {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            text-align: justify;
+        }
+        h6 {
+            color:red;
+        } 
+        
+    </style>
+</head>
+
+<h2>My Events</h2>
+<p style="padding-top:10px;">
+    <h4 ">
+        This Event is about the Book Reading Event Management and here you can see up the upcoming and past Events.
+        But if you want to pasticipate in the event then you must have to register youself and should have a account.
+    </h4>
+    <h5 > *Click on Upcoming events to see the Future Events </h5>
+    <h5 > *Click on Past events to see the Past Events </h5>
+    <h5 > *Click on Create New to participate in the Event  </h5>
+
+
+
+    <h6 > all the details you can see up in the upcoming and past events regarding date , time etc .</h6>
+</p>
+<div>
+    <p>@Html.ActionLink("Create New", "Create")</p>
+    <p>@Html.ActionLink("Upcoming Events", "UpcomingEvent", "Events")</p>
+    <p>@Html.ActionLink("Past Events", "PastEvent", "Events")</p>
+</div>
+   
+
+

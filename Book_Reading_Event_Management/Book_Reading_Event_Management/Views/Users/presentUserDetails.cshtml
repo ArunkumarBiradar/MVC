@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Book_Reading_Event_Management.Models.User>
+@{
+    ViewBag.Title = "presentUserDetails";
+}
+<head>
+    <style>
+        * {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            text-align: justify;
+        }
+    </style>
+</head>
+<h2>Your Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConfirmPassword)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.IsAdmin)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConfirmPassword)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.IsAdmin)
+                </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.UserID })
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.UserID })*@
+        </td>
+        </tr>
+    }
+
+</table>

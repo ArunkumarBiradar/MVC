@@ -1,0 +1,80 @@
+﻿@model Book_Reading_Event_Management.Models.Comment
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<head>
+    <style>
+        * {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            text-align: justify;
+        }
+
+        </style >
+</head >
+        <h2 > Comment</h2 >
+
+        <h6 style="color:red" > All the * fields are mandatory</h6 >
+        @using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+  <div class="form-horizontal" >
+
+        <hr / >
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" >
+        @Html.LabelFor(model => model.EventID,"Event ID *", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10" >
+        @Html.EditorFor(model => model.EventID, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.EventID, "", new { @class = "text-danger" })
+        </div >
+        </div >
+
+        <div class="form-group" >
+        @Html.LabelFor(model => model.FullName, "Full Name *", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10" >
+        @Html.EditorFor(model => model.FullName,  new { htmlAttributes = new { @Value = @Session["FullName"], @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+        </div >
+        </div >
+
+        <div class="form-group" >
+        @Html.LabelFor(model => model.UserID, "User ID *", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10" >
+        @Html.EditorFor(model => model.UserID,  new { htmlAttributes = new { @Value = @Session["UserID"], @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+        </div >
+        </div >
+
+        <div class="form-group" >
+        @Html.LabelFor(model => model.Date, "Date *", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10" >
+        @Html.EditorFor(model => model.Date,  new { htmlAttributes = new { @Value = System.DateTime.Now.Date, @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+        </div >
+        </div >
+
+        <div class="form-group" >
+        @Html.LabelFor(model => model.Data, "Comment *", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10" >
+        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+        </div >
+        </div >
+
+        <div class="form-group" >
+        <div class="col-md-offset-2 col-md-10" >
+        <input type="submit" value="Create" class="btn btn-default" / >
+        </div >
+        </div >
+        </div >
+}
+        <div >
+        @Html.ActionLink("All Comments List", "Index")
+        </div >
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
